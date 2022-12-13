@@ -29,7 +29,7 @@ app.get("/messaging-webhook", (req, res) => {
   
     
       if (mode && token) {
-        if (mode === "subscribe" && token === EAARKYqLdIJMBAEow3XhD8Rvun85i7JjwGap9sA9VLoZCtYx8frBX6s9GbZAVgh78np7WnLZCTZBrZBmNFPSQFkqv27bLXhNtXQtC2QMmF7Sb8qxWsivOn5HOv5Nx5cxHXv90rBCHILZAuQxwU1ADX1CANUdGkwo2cRgCisj4CFgrIyOLRKQC7iVuvwsoOxX6kZD) {
+        if (mode === "subscribe" && token === "EAARKYqLdIJMBAEow3XhD8Rvun85i7JjwGap9sA9VLoZCtYx8frBX6s9GbZAVgh78np7WnLZCTZBrZBmNFPSQFkqv27bLXhNtXQtC2QMmF7Sb8qxWsivOn5HOv5Nx5cxHXv90rBCHILZAuQxwU1ADX1CANUdGkwo2cRgCisj4CFgrIyOLRKQC7iVuvwsoOxX6kZD") {
           console.log("WEBHOOK_VERIFIED");
           res.status(200).send(challenge);
         } else {
