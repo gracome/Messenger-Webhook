@@ -13,14 +13,19 @@ app.post("/webhook", (req, res) => {
 
 
 if (body.object === "page") {
-    res.status(200).send("EVENT_RECEIVED");
+    body.entry.forEach(function(entry) {
 
-  } else {
-    res.sendStatus(404);
-  }
+        // Gets the body of the webhook event
+        let webhook_event = entry.messaging[0];
+        console.log(webhook_event);
+      
+        // Get the sender PSID
+        let sender_psid = webhook_event.sender.id;
+        console.log('Sender PSID: ' + sender_psid);
+    });      
 
   
-}); 
+}
 app.get("/messaging-webhook", (req, res) => {
   
     let mode = req.query["hub.mode"];
@@ -34,7 +39,7 @@ app.get("/messaging-webhook", (req, res) => {
           res.status(200).send(challenge);
         } else {
           res.sendStatus(403);
-          
+
         }
       }
     });
@@ -44,11 +49,25 @@ app.get("/messaging-webhook", (req, res) => {
 app.listen(PORT, (error) =>{
     if(!error)
         console.log("Server is Successfully Running,and App is listening on port "+ PORT)
-    else 
+else 
         console.log("Error occurred, server can't start", error);
     }
 );
 
+})
 
 
+// Handles messages events
+function handleMessage(sender_psid, received_message) {
 
+}
+
+// Handles messaging_postbacks events
+function handlePostback(sender_psid, received_postback) {
+
+}
+
+// Sends response messages via the Send API
+function callSendAPI(sender_psid, response) {
+  
+}
