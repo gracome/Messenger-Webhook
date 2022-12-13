@@ -103,7 +103,7 @@ function callSendAPI(sender_psid, response) {
   
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://messenger-w5t8.onrender.com/me/messages",
+    "uri": "https://messenger-w5t8.onrender.com/messages",
     "qs": { "access_token": "EAARKYqLdIJMBAEow3XhD8Rvun85i7JjwGap9sA9VLoZCtYx8frBX6s9GbZAVgh78np7WnLZCTZBrZBmNFPSQFkqv27bLXhNtXQtC2QMmF7Sb8qxWsivOn5HOv5Nx5cxHXv90rBCHILZAuQxwU1ADX1CANUdGkwo2cRgCisj4CFgrIyOLRKQC7iVuvwsoOxX6kZD" },
     "method": "POST",
     "json": request_body
