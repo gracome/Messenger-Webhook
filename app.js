@@ -23,12 +23,13 @@ if (body.object === "page") {
 }); 
 app.get("/messaging-webhook", (req, res) => {
   
-      let mode = req.query["suscribe"];
-      let token = req.query["110015668622854"];
-      let challenge = req.query["mytoken"];
+    let mode = req.query["hub.mode"];
+    let token = req.query["hub.verify_token"];
+    let challenge = req.query["hub.challenge"];
+  
     
       if (mode && token) {
-        if (mode === "subscribe" && token === config.verifyToken) {
+        if (mode === "subscribe" && token === EAARKYqLdIJMBAEow3XhD8Rvun85i7JjwGap9sA9VLoZCtYx8frBX6s9GbZAVgh78np7WnLZCTZBrZBmNFPSQFkqv27bLXhNtXQtC2QMmF7Sb8qxWsivOn5HOv5Nx5cxHXv90rBCHILZAuQxwU1ADX1CANUdGkwo2cRgCisj4CFgrIyOLRKQC7iVuvwsoOxX6kZD) {
           console.log("WEBHOOK_VERIFIED");
           res.status(200).send(challenge);
         } else {
@@ -36,7 +37,7 @@ app.get("/messaging-webhook", (req, res) => {
         }
       }
     });
-
+   
 
   
 app.listen(PORT, (error) =>{
