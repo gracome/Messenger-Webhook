@@ -34,6 +34,7 @@ app.get("/messaging-webhook", (req, res) => {
           res.status(200).send(challenge);
         } else {
           res.sendStatus(403);
+          
         }
       }
     });
