@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 const bodyParser= require('body-parser')
 
+app.use(bodyParser.json())
 
 
 app.post("/messaging-webhook", (req, res) => {
