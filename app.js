@@ -2,10 +2,17 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+const NRP = require("node-redis-pubsub");
+// NRP initialisation
+const nrp = new NRP({
+    PORT: 6379,
+    scope: "microservice"
+});
+
 
 app.post("/webhook", (req, res) => {
     let body = req.body;
-  
+  console.log(body);
     console.log(`\u{1F7EA} Received webhook:`);
     console.dir(body, { depth: null });
 
@@ -18,7 +25,8 @@ if (body.object === "page") {
         console.log(webhook_event);
         
       });
-  
+       // Emit the event to the messaging micro service
+       nrp.emit("NEW_MESSAGE", msg);
       
       res.status(200).send('EVENT_RECEIVED');
   
