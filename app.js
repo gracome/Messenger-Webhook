@@ -2,12 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const NRP = require("node-redis-pubsub");
-// NRP initialisation
-const nrp = new NRP({
-    PORT: 6379,
-    scope: "microservice"
-});
+
 
 
 app.post("/webhook", (req, res) => {
