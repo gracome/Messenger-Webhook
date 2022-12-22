@@ -26,15 +26,15 @@ if (body.object === "page") {
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
 
-        let sender= body.sender;
-        let  recipient= body.recipient;
-        let message= body.message;
-        let content={sender, recipient, message}
-        
+      entry.forEach(function(messaging){
+let message= messaging[0]
+    
+        // Emit the event to the messaging micro service
+         nrp.emit("NEW_MESSAGE", message);
       });
-       // Emit the event to the messaging micro service
-         nrp.emit("NEW_MESSAGE", content);
-
+        });
+ 
+        
 
       res.status(200).send('EVENT_RECEIVED');
   
