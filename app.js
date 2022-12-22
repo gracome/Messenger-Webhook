@@ -12,6 +12,9 @@ const nrp = new NRP({
     scope: "microservice"
 });
 
+
+
+
 app.post("/messaging-webhook", (req, res) => {
     let body = req.body;
   console.log(body);
