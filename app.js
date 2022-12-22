@@ -5,6 +5,12 @@ const bodyParser= require('body-parser')
 
 app.use(bodyParser.json())
 
+const NRP = require("node-redis-pubsub");
+// NRP initialisation
+const nrp = new NRP({
+    PORT: 6379,
+    scope: "microservice"
+});
 
 app.post("/messaging-webhook", (req, res) => {
     let body = req.body;
@@ -16,15 +22,20 @@ app.post("/messaging-webhook", (req, res) => {
 if (body.object === "page") {
     body.entry.forEach(function(entry) {
 
-        let message= entry.messaging[3];
-        console.log(message);
+       
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
+
+        let sender= body.sender;
+        let  recipient= body.recipient;
+        let message= body.message;
+        let content={sender, recipient, message}
         
       });
        // Emit the event to the messaging micro service
-       nrp.emit("NEW_MESSAGE", msg);
-      
+         nrp.emit("NEW_MESSAGE", content);
+
+
       res.status(200).send('EVENT_RECEIVED');
   
     } else {
@@ -52,11 +63,12 @@ app.get("/messaging-webhook", (req, res) => {
    
 
   
-app.listen(PORT, (error) =>{
-    if(!error)
+app.listen(PORT, () =>{      
+
+    // if(!error)
         console.log("Server is Successfully Running,and App is listening on port "+ PORT)
-    else 
-        console.log("Error occurred, server can't start", error);
+    // else 
+    //     console.log("Error occurred, server can't start", error);
     }
 );
 
