@@ -33,6 +33,7 @@ let recipient= webhook_event.recipient;
 let msg= webhook_event.message;
          
     let content= {send_id, recipient,msg}
+    console.log(content);
         // Emit the event to the messaging micro service
          nrp.emit("NEW_MESSAGE",  content);
     
