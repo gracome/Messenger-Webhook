@@ -25,14 +25,16 @@ app.post("/messaging-webhook", (req, res) => {
 
 if (body.object === "page") {
     body.entry.forEach(function(entry) {
-
        
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
-
-    
+         console.log(webhook_event);
+let send_id= webhook_event.sender;
+let recipient= webhook_event.recipient;
+let msg= webhook_event.message;
+         
+    let content= {send_id, recipient,msg}
         // Emit the event to the messaging micro service
-         nrp.emit("NEW_MESSAGE",  webhook_event);
+         nrp.emit("NEW_MESSAGE",  content);
     
         });
  
