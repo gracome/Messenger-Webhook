@@ -6,10 +6,13 @@ const bodyParser= require('body-parser')
 app.use(bodyParser.json())
 
 const NRP = require("node-redis-pubsub");
-// NRP initialisation
-const nrp = new NRP({
-   url:process.env.Redis_url
-});
+const url = process.env.REDIS_URL;
+
+const config = {
+    url: url
+};
+
+var nrp = new NRP(config);
 
 
 
