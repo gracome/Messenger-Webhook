@@ -8,9 +8,7 @@ app.use(bodyParser.json())
 const NRP = require("node-redis-pubsub");
 // NRP initialisation
 const nrp = new NRP({
-    port: 6379,
-    host:"red-cei3ofsgqg4e0eftlhug",
-    scope: "microservice"
+   url:process.env.Redis_url
 });
 
 
