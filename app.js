@@ -31,7 +31,7 @@ if (body.object === "page") {
          console.log(webhook_event);
 let send_id= webhook_event.sender;
 let recipient= webhook_event.recipient;
-let msg= webhook_event.message;
+let msg= webhook_event.message.text;
          
     let content= {send_id, recipient,msg}
     console.log(content);
