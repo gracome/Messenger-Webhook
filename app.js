@@ -38,7 +38,7 @@ app.post("/messaging-webhook", (req, res) => {
       let content = { send_id, recipient, msg }
       console.log(content);
       // Emit the event to the messaging micro service
-
+        nrp.emit("NEW_MESSAGE", content);
     });
 
 
@@ -79,9 +79,7 @@ app.listen(PORT, () => {
    // Call messenger service to handle the incomming message
    // If no error has occured then emit on socket io for the front app
   },
-  function(){
-    nrp.emit("NEW_MESSAGE", "bonsoir");
-  }
+  
   );
 
  
