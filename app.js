@@ -31,8 +31,8 @@ app.post("/messaging-webhook", (req, res) => {
 
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
-      let send_id = webhook_event.sender;
-      let recipient = webhook_event.recipient;
+      let send_id = webhook_event.sender.id;
+      let recipient = webhook_event.recipient.id;
       let msg = webhook_event.message.text;
       let ms_id= webhook_event.message.mid
       let content = { send_id, recipient,ms_id, msg }
@@ -42,7 +42,7 @@ app.post("/messaging-webhook", (req, res) => {
     });
 
 
-    
+
 
 
     res.status(200).send('EVENT_RECEIVED');
