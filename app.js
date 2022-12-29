@@ -7,12 +7,12 @@ app.use(bodyParser.json())
 
 const NRP = require("node-redis-pubsub");
 
+var url = process.env.REDIS_URL;
+
 var config = {
-  port: 6129                       , // Port of your remote Redis server
-  host: '64.225.72.177' , // Redis server host, defaults to 127.0.0.1
-  auth: 'uVAajCh3CY9i7Kk'                  , // Password
-  scope: 'demo'                       // Use a scope to prevent two NRPs from sharing messages
+    url: url
 };
+
 
 var nrp = new NRP(config);
 
