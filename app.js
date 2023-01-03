@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const bodyParser = require('body-parser')
+const {getProfileInformations}= require('./profile');
+
 
 app.use(bodyParser.json())
 
@@ -29,7 +31,7 @@ app.post("/messaging-webhook", (req, res) => {
 
 
   if (body.object === "page") {
-    body.entry.forEach(function (entry) {
+    body.entry.forEach(async function (entry) {
 
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
@@ -37,7 +39,8 @@ app.post("/messaging-webhook", (req, res) => {
       let recipient = webhook_event.recipient.id;
       let msg = webhook_event.message.text;
       let ms_id= webhook_event.message.mid
-      let content = { send_id, recipient,ms_id, msg }
+      let profile= await getProfileInformations(send_id); 
+      let content = { send_id, recipient,ms_id, msg, profile }
       console.log(content);
       // Emit the event to the messaging micro service
         nrp.emit("NEW_MESSAGE", content);
