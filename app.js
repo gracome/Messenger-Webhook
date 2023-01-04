@@ -4,7 +4,6 @@ const PORT = 3000;
 const bodyParser = require('body-parser')
 const {getProfileInformations}= require('./profile');
 
-
 app.use(bodyParser.json())
 
 const NRP = require("node-redis-pubsub");
@@ -65,7 +64,7 @@ app.get("/messaging-webhook", (req, res) => {
 
 
   if (mode && token) {
-    if (mode === "subscribe" && token === "EAAMCYhtmZBEoBAJrcZCknIioyGEiMP8P3VmjoL9wUXnbtcYAgzfvwXWySJoZCB6jzm0TUZCKm9oyMpTdHDrVk8qtXKZATXNsbqPW1vFUaSheXZAKuN5rHX3AAficGFFUy2U1GfJxCz8SJTiDoGWuN3azM5iyEZAglmlU7wusM8M3YQEy8F0R3gHZAMhvsgUqhH8ZD") {
+    if (mode === "subscribe" && token === "EAAMCYhtmZBEoBAOTC4ZBPNZAnJ2gxkwhy5MAhIZAnhv2wwhlwBZCoX06BbrpfhsiG6ZARsH7e9WKlx8Mivr7MudsrZAD99DNa6y9gtcGUafG3IQeZCy5TIboshSfZAC4ZCJx9VXg2ZAJETy5Fevk5wSIZBfkM6SgsXwH1VHdke3H4NUpxi8u5Qxx7vA4uXSqFz3MPDIZD") {
       console.log("WEBHOOK_VERIFIED");
       res.status(200).send(challenge);
     } else {
@@ -75,7 +74,9 @@ app.get("/messaging-webhook", (req, res) => {
   }
 });
 
-
+app.get("/test",async (req,res) =>{
+ await getProfileInformations();
+}), 
 
 app.listen(PORT, () => {
 
