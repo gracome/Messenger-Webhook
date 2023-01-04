@@ -6,6 +6,7 @@ const getProfileInformations = async () => {
   {
     const requestUrl = `https://graph.facebook.com/v2.6/5928197517238041?access_token=${process.env.VERIFY_TOKEN}`;
     const result =  await axios.get(requestUrl);
+    console.log('data', result.data);
     return result.data;
     // console.log(result.data);
   }
