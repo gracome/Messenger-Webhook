@@ -74,9 +74,9 @@ app.get("/messaging-webhook", (req, res) => {
   }
 });
 
-app.get("/test",async (req,res) =>{
- await getProfileInformations();
-}), 
+
+
+
 
 app.listen(PORT, () => {
 
